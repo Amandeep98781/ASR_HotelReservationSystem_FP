@@ -6,6 +6,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <style>
+        /*Progress Bar*/
+        .progress-wrap {
+            text-align: center;
+            font-size: 50px;
+            color: white;
+            margin: 0 0 20px 0;
+        }
+
+        .progress-wrap progress {
+            width: 100%;
+            margin: 0 0 5px 0;
+        }
+
+        progress::-webkit-progress-value {
+            background: #265f18 !important;
+        }
+
+        progress::-moz-progress-bar {
+            background: #265f18 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -35,12 +57,13 @@
     <!--//HEADER-->
 
     <!--SIGNUP FORM-->
-    <div>
+    <div class="form-container section-margin-padding-top">
+
         <h2 class="align-center">Registration</h2>
 
         <form accept-charset="UTF-8" action="#" class="pro-form" id="pro-form" method="post">
 
-            <div>
+            <div class="progress-wrap">
                 <progress max="100" value="0" id="progress"></progress>
             </div>
 
@@ -81,6 +104,44 @@
         </form>
     </div>
     <!--//SIGNUP FORM-->
+
+    <!--FOOTER-->
+    <footer>
+        <div class="footer-wrapper">
+            <div class="nav-wrapper sm-text-center">
+                <div class="dots-wrapper">
+                    <a class="footer-title" style="color: white;text-decoration: none;margin-top: 10px"
+                        href="index.html">
+                        Hotel Reservation System
+                    </a>
+                </div>
+                <div>
+                    <ul>
+                        <li><a href="booking.html">Booking</a></li>
+                        <li><a href="service.html">Services</a></li>
+                        <li><a href="about.html">About us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 30px">
+                <div>
+                    <a class="" href="#" style="color: white;text-decoration: none">
+                        All right Reserved
+                    </a>
+                </div>
+                <div>
+                    <a class="" href="#" style="color: white;text-decoration: none">
+                        &#169; Created by ASR
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--//FOOTER-->
 
 </body>
 
