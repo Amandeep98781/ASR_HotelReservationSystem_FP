@@ -34,6 +34,54 @@
     </nav>
     <!--//HEADER-->
 
+    <!--SIGNUP FORM-->
+    <div>
+        <h2 class="align-center">Registration</h2>
+
+        <form accept-charset="UTF-8" action="#" class="pro-form" id="pro-form" method="post">
+
+            <div>
+                <progress max="100" value="0" id="progress"></progress>
+            </div>
+
+            <label for="username">Name</label>
+            <input type="text" id="username" name="username" required placeholder="Enter Name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" required name="email" placeholder="@gmail.com">
+
+            <label for="website">Personal URL</label>
+            <input type="url" pattern="https?://.+" title="Include http://" id="website" name="website" required
+                placeholder="Personal URL">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" required name="password" placeholder="Password">
+
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" id="confirmpassword" required name="confirmpassword"
+                placeholder="Confirm your Password">
+
+            <label for="dob">Year Of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label>Gender</label>
+            <input type="radio" name="gender" id="male" value="Male" checked> Male
+            <input type="radio" name="gender" id="female" value="Female"> Female
+            <br>
+            <div style="margin-top: 15px">
+                <label for="comments">Comments</label>
+                <textarea name="comments" id="comments" required placeholder="Enter Comments"></textarea>
+            </div>
+            <input type="checkbox" id="agree" name="agree" value="Yes"> <label>Agree with our policies.</label>
+
+            <div class="align-center">
+                <input type="button" value="Submit" name="submit" id="submit">
+                <input type="reset" value="Reset" name="reset" id="reset">
+            </div>
+        </form>
+    </div>
+    <!--//SIGNUP FORM-->
+
 </body>
 
 </html>
