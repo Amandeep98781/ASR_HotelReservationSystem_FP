@@ -7,9 +7,7 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-        <!--    External Links-->
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="css/style2.css">
+      
     
         <!--    FONTS-->
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -67,3 +65,82 @@
         }
               </style>
     </head>
+    <body>
+        <!--HEADER-->
+<nav class="navbar header">
+    <ul>
+        <li><a href="index.html" style="font-weight: bolder;font-size: 19px">
+            Hotel Reservation System</a>
+        </li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li class="beforeLogin"><a href="login.html" class="">
+            Login</a>
+        </li>
+        <li class="beforeLogin"><a href="register.html" class="">
+            Register</a>
+        </li>
+        <li class="afterLogin"><a href="userDetails2.html" class="">My WishList</a>
+        </li>
+        <li class="afterLogin"><a onclick="logout()" class="">
+            Logout</a>
+        </li>
+    </ul>
+</nav>
+<!--//HEADER-->
+
+<!--SERVICES-->
+<section class="container">
+    <div class="service-title">Hotels</div>
+    <form>
+        <!--    1-->
+        <div class="row-service2">
+            <div class="">
+                <img src="gallery/hotel-1.jpg" class="img-fluid" alt="About Us">
+            </div>
+            <div class="boxView">
+                <div class="hotel-name-container">
+                    <a class="hotel-title" href="#">JW MARRIOTT HOTEL</a>
+                    <input type="hidden" id="hotelName" name="hotelName" value="JW MARRIOTT HOTEL"/>
+                </div>
+                <div class="review-container">
+                    <div class="stars">
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="reviews">
+                        <span>8.5</span>
+                    </div>
+                </div>
+
+                <ul class="about-ul">
+                    <li>
+                        <b style="color: #316300;font-size: 22px;"><span><i class="fas fa-rupee-sign"
+                                                                            aria-hidden="true"></i></span>
+                            3,500</b>&nbsp;&nbsp;per room / per night
+                        <input type="hidden" id="hotelPrice" name="hotelPrice" value="3500"/>
+                    </li> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <li style="margin-top: 25px;">
+                        <b><span><i class="fas fa-landmark" aria-hidden="true"></i></span> Delhi</b>
+                        <input type="hidden" id="hotelCity" name="hotelCity" value="Delhi"/>
+                    </li>
+                    <li style="margin-top: 25px;">
+                        <b><span><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span> 3.2 km to City
+                            Centre</b>
+                        <input type="hidden" id="hotelDistance" name="hotelDistance" value="3.2 km to City Centre"/>
+                    </li>
+                </ul>
+
+                <div><a onclick="saveWishlist(1)" href="#" class="btn about-btn btn-transparent"><i
+                        class="fas fa-plus-circle"></i> Add To Wishlist</a></div>
+            </div>
+        </div>
+
+    </body>
