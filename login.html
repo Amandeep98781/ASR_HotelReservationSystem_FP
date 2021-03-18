@@ -6,6 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+
+    <style>
+        .form-container {
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+
+        .align-center {
+            text-align: center;
+        }
+
+        .section-margin-padding-top {
+            padding-top: 10px;
+            margin-top: 30px;
+            padding-bottom: 30px;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,6 +50,27 @@
         </ul>
     </nav>
     <!--//HEADER-->
+
+    <!--LOGIN FORM-->
+    <div class="form-container section-margin-padding-top">
+        <h2 class="align-center">Login</h2>
+
+        <form>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required placeholder="Enter Username">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" required name="password" placeholder="Enter Password">
+
+            <div class="align-center">
+                <input type="button" value="Login" name="login" id="login" class="btn btn-success">
+                <input type="reset" value="Reset" name="reset" id="reset" class="btn btn-dark">
+            </div>
+        </form>
+    </div>
+    <!--//LOGIN FORM-->
+
+    <div style="min-height: 30px;"></div>
 
 </body>
 
