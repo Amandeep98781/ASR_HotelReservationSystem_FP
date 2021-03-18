@@ -35,6 +35,53 @@
 </nav>
 <!--//HEADER-->
 
+<!--BOOKING FORM-->
+<div class="form-container section-margin-padding-top">
+
+
+    <h2 class="align-center">Booking Form</h2>
+
+    <form accept-charset="UTF-8" action="#" class="pro-form" id="pro-form" method="post">
+
+        <div class="progress-wrap">
+            <progress max="100" value="0" id="progress"></progress>
+        </div>
+
+        <label for="username">Name</label>
+        <input type="text" id="username" name="username" required
+               placeholder="Enter Name">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" required name="email" placeholder="@gmail.com">
+
+        <label for="checkin">CheckIn Date</label>
+        <input type="date" id="checkin" name="checkin" required>
+
+        <label for="checkout">CheckOut Date</label>
+        <input type="date" id="checkout" name="checkout" required>
+
+        <label for="roomtype">Room Type</label>
+        <select name="roomtype" id="roomtype" required onchange="changePrice()">
+            <option value="">---- Please Select ----</option>
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="Triple">Triple</option>
+            <option value="Quad">Quad</option>
+            <option value="King">King</option>
+            <option value="Twin">Twin</option>
+        </select>
+
+        <label for="totalprice">Total Price (&#x20B9;)</label>
+        <input type="text" name="totalprice" id="totalprice" required value="" placeholder="Please Select Room Type" readonly>
+
+        <div class="align-center">
+            <input type="submit" value="Submit" name="submit" id="submit" class="btn btn-success">
+            <input type="reset" value="Reset" name="reset" id="reset" class="btn btn-dark">
+        </div>
+    </form>
+</div>
+<!--//BOOKING FORM-->
+
 <!--FOOTER-->
 <footer>
     <div class="footer-wrapper">
