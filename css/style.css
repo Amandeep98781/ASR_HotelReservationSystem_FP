@@ -1,0 +1,72 @@
+body {
+    font-family: Montserrat, sans-serif;
+    color: #2A2D34;
+    font-size: .9em;
+    margin: 0;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    font-size: 17px !important;
+
+}
+
+.header-top {
+    background-color: #8458B3;
+    opacity: 0.7;
+}
+
+.header {
+    /*padding: 2em;*/
+    background-color: #8458B3;
+}
+
+nav ul {
+    display: inline-flex;
+    /*margin: 0 10em;*/
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+}
+
+li a {
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+
+span a {
+    background-color: black;
+    padding: 8px;
+    color: white;
+    border-radius: 3px
+}
+
+.btn-success {
+    background-color: green;
+    color: white;
+}
+.btn-success:hover {
+    background-color: #80cd0a;
+    color: white;
+    transition: .3s ease-in-out;
+}
+
+.btn-dark {
+    background-color: #000;
+    color: white;
+}
+.btn-dark:hover {
+    background-color: #353535;
+    color: white;
+}
+
+
+
+
