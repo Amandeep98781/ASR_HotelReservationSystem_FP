@@ -63,3 +63,26 @@ input[type=submit]:hover {
     /*padding: 2em;*/
     background-color: #8458B3;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .columns-2 {
+        display: grid;
+        grid-template-columns: 2fr;
+        grid-gap: 1em;
+    }
+
+    .columns-12 {
+        display: grid;
+        grid-template-columns: 2fr;
+        grid-gap: 1em;
+    }
+
+    .columns-2-r {
+        padding-right: 5px;
+    }
+
+    .columns-2-l {
+        padding-left: 5px;
+    }
+}
