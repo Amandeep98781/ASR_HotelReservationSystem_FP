@@ -186,6 +186,101 @@
         </div>
     </footer>
     <!--//FOOTER-->
+
+    <script>
+        let db = null;
+    
+        // VIEW
+        function viewWishlist() {
+            const crudOpt = db.transaction("Wishlists", "readonly")
+            const noteObj = crudOpt.objectStore("Wishlists");
+            const viewrequest = noteObj.openCursor();
+            let tabData = `<table border='1' style="border: 1px solid #d7d7d7;"><thead>
+                            <tr class="table-row">
+                            <th class="table-heading">Hotel&nbsp;Name</th>
+                            <th class="table-heading">City</th>
+                            <th class="table-heading">Price</th>
+                            <th class="table-heading">Distance</th>
+                            <th class="table-heading">Controls</th>
+                            </tr>
+                            </thead>
+                            <tbody>`
+    
+            viewrequest.onsuccess = e => {
+                const cursor = e.target.result
+
+                if (cursor) {
+
+var username_cookie = getCookie("username");
+if (cursor.value.username == username_cookie) {
+    tabData += `<tr>
+                <td class="table-data">${cursor.key}</td>
+                <td class="table-data">${cursor.value.hotelCity}</td>
+                <td class="table-data">${cursor.value.hotelPrice}</td>
+                <td class="table-data">${cursor.value.hotelDistance}</td>
+                <td class="table-data"><input onclick="deleteWishlist('${cursor.value.hotelName}')" class="btn delete-btn" type="button" value="Delete"></td>
+                </tr>`
+}
+
+cursor.continue();
+} else {
+tabData += "</tbody></table>";
+document.getElementById("wishlistDetails").innerHTML = tabData;
+}
+}
+}
+
+ // DELETE
+ function deleteWishlist(hotelName) {
+        if (confirm("Are you sure to delete")) {
+            const crudOpt = db.transaction("Wishlists", "readwrite")
+            const noteObj = crudOpt.objectStore("Wishlists");
+            noteObj.delete(hotelName);
+            console.log("data deleted");
+            viewWishlist();
+        }
+    }
+
+    // GET COOKIE
+
+    // AUTH ACTION
+    function authAction() {
+
+
+var username_cookie = getCookie("username");
+if (username_cookie == '') {
+    window.location.assign("login.html");
+
+}
+}
+ // -------------------------------------------------------
+    //--> DATABASE CREATION
+    const openRequest = indexedDB.open("MyServiceDB", 1);
+
+    openRequest.onupgradeneeded = function (e) {
+        // triggers if the client had no database
+        // ...perform initialization...
+        db = e.target.result;
+        // Table-1
+        db.createObjectStore("Signup", {keyPath: "username"})
+        // Table-2
+        db.createObjectStore("Bookings", {keyPath: "username"})
+        // Table-3
+        db.createObjectStore("Wishlists", {keyPath: "hotelName"})
+        // console.log("no database")
+    };
+
+    openRequest.onerror = function () {
+        console.error("Error", openRequest.error);
+    };
+
+    openRequest.onsuccess = function () {
+        db = openRequest.result;
+        console.warn("DB Connected")
+        console.log("DB Name: " + db.name)
+        // continue working with database using db object
+    };
+</script>
    
    
    <script>
