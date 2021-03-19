@@ -225,6 +225,58 @@
         alert("Booking Done Successfully");
         // viewNotes()
     }
+
+     // -------------------------------------------------------
+    //--> DATABASE CREATION
+    const openRequest = indexedDB.open("MyServiceDB", 1);
+
+    openRequest.onupgradeneeded = function (e) {
+        // triggers if the client had no database
+        // ...perform initialization...
+        db = e.target.result;
+        // Table-1
+        db.createObjectStore("Signup", {keyPath: "username"})
+        // Table-2
+        db.createObjectStore("Bookings", {keyPath: "username"})
+        // Table-3
+        db.createObjectStore("Wishlists", {keyPath: "hotelName"})
+        // console.log("no database")
+    };
+
+    openRequest.onerror = function () {
+        console.error("Error", openRequest.error);
+    };
+
+    openRequest.onsuccess = function () {
+        db = openRequest.result;
+        console.warn("DB Connected")
+        console.log("DB Name: " + db.name)
+        // continue working with database using db object
+    };
+</script>
+
+<!--ROOMS-->
+<script>
+    var Rooms = document.getElementById("roomtype");
+    var TotalPrice = document.getElementById("totalprice");
+
+    function changePrice() {
+        if (Rooms.value === "Single") {
+            TotalPrice.value = 500;
+        } else if (Rooms.value === "Double") {
+            TotalPrice.value = 800;
+        } else if (Rooms.value === "Triple") {
+            TotalPrice.value = 1200;
+        } else if (Rooms.value === "Quad") {
+            TotalPrice.value = 1500;
+        } else if (Rooms.value === "King") {
+            TotalPrice.value = 1800;
+        } else if (Rooms.value === "Twin") {
+            TotalPrice.value = 2000;
+        } else {
+            TotalPrice.value = 0;
+        }
+    }
 </script>
 <script>
     showHideLink()
