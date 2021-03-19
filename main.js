@@ -25,8 +25,8 @@ function showHideLink() {
         item.style.display = ctrlval;
     }
 
-     ctrlval = username_cookie == "" ? "none" : "inline-block";
-     contrls = document.getElementsByClassName("afterLogin");
+    ctrlval = username_cookie == "" ? "none" : "inline-block";
+    contrls = document.getElementsByClassName("afterLogin");
 
     for (let item of contrls) {
         item.style.display = ctrlval;

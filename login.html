@@ -21,12 +21,21 @@
             text-align: center;
         }
 
+        @media only screen and (max-width: 600px) {
+            .form-container {
+                margin-left: 2%;
+                margin-right: 2%;
+            }
+        }
+
         .section-margin-padding-top {
             padding-top: 10px;
             margin-top: 30px;
             padding-bottom: 30px;
         }
     </style>
+    </style>
+    <script src="main.js"></script>
 </head>
 
 <body>
@@ -51,6 +60,9 @@
             <li class="afterLogin"><a href="userDetails2.html" class="">My WishList</a>
             </li>
 
+            <li class="afterLogin"><a onclick="logout()" class="">
+                    Logout</a>
+            </li>
         </ul>
     </nav>
     <!--//HEADER-->
@@ -67,7 +79,8 @@
             <input type="password" id="password" required name="password" placeholder="Enter Password">
 
             <div class="align-center">
-                <input type="button" value="Login" name="login" id="login" class="btn btn-success">
+                <input onclick="validation()" type="button" value="Login" name="login" id="login"
+                    class="btn btn-success">
                 <input type="reset" value="Reset" name="reset" id="reset" class="btn btn-dark">
             </div>
         </form>
@@ -79,9 +92,9 @@
 
     <!--FOOTER-->
     <footer>
-        <div>
-            <div>
-                <div>
+        <div class="footer-wrapper">
+            <div class="nav-wrapper sm-text-center">
+                <div class="dots-wrapper">
                     <a style="color: white;text-decoration: none;margin-top: 10px" href="index.html">
                         Hotel Reservation System
                     </a>
@@ -98,15 +111,15 @@
                     </ul>
                 </div>
             </div>
-            <div style="margin-top: 30px">
-                <div>
+            <div class="nav-wrapper sm-text-center" style="margin-top: 30px">
+                <div class="diplay-block">
                     <a class="" href="#" style="color: white;text-decoration: none">
                         All right Reserved
                     </a>
                 </div>
-                <div>
+                <div class="diplay-block">
                     <a class="" href="#" style="color: white;text-decoration: none">
-                        &#169; Created by ASR
+                        &copy; Created by ASR
                     </a>
                 </div>
             </div>
@@ -115,83 +128,103 @@
     <!--//FOOTER-->
 
     <script>
+        function validation() {
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            if (username === '' && password === '') {
+                alert("Username and Password required");
+                return false;
+            } else if (username === '' || username == null) {
+                alert("Username or password is required.");
+                return false;
+            } else if (password === '' || password == null) {
+                alert("Username or Password is required.");
+                return false;
+            } else {
+                loginAction();
+            }
+        }
+    </script>
+
+    <script>
         let db = null;
-    
+
         // LOGIN BUTTON
-        let ViewSignup = document.getElementById("login");
-        ViewSignup.addEventListener("click", loginAction);
-    
+        // let ViewSignup = document.getElementById("login");
+        //ViewSignup.addEventListener("click", loginAction);
+
         function loginAction() {
             let username = document.getElementById("username");
             let password = document.getElementById("password");
-    
+
             const crudOpt = db.transaction("Signup", "readonly")
             const noteObj = crudOpt.objectStore("Signup");
             const viewrequest = noteObj.openCursor();
             // console.log(viewrequest);
-    
-            var isLoggedIn=false;
+
+            var isLoggedIn = false;
             viewrequest.onsuccess = e => {
                 const cursor = e.target.result
-    
+
                 if (cursor) {
                     // console.log(cursor);
                     // console.log(cursor.key);
                     // console.log(cursor.value.password);
                     if (cursor.key === username.value && cursor.value.password === password.value) {
                         // console.log("Matched");
-                        isLoggedIn=true;
-                        document.cookie = "username="+username.value;
+                        isLoggedIn = true;
+                        document.cookie = "username=" + username.value;
                         var x = document.cookie;
                         console.log(x);
                         window.location.assign("userDetails2.html");
                     }
-    
+
                     cursor.continue();
                 } else {
-                    if(isLoggedIn===false) {
+                    if (isLoggedIn === false) {
                         alert("Incorrect Username Or Password")
                     }
-    
-    
-    
+
+
+
                 }
             }
         }
 
-    // -------------------------------------------------------
-    //--> DATABASE CREATION
-    const openRequest = indexedDB.open("MyServiceDB", 1);
+        // -------------------------------------------------------
+        //--> DATABASE CREATION
+        const openRequest = indexedDB.open("MyServiceDB", 1);
 
-    openRequest.onupgradeneeded = function (e) {
-        // triggers if the client had no database
-        // ...perform initialization...
-        db = e.target.result;
-        // Table-1
-        db.createObjectStore("Signup", {keyPath: "username"})
-        // Table-2
-        db.createObjectStore("Bookings", {keyPath: "username"})
-        // Table-3
-        db.createObjectStore("Wishlists", {keyPath: "hotelName"})
-        // console.log("no database")
-    };
+        openRequest.onupgradeneeded = function (e) {
+            // triggers if the client had no database
+            // ...perform initialization...
+            db = e.target.result;
+            // Table-1
+            db.createObjectStore("Signup", { keyPath: "username" })
+            // Table-2
+            db.createObjectStore("Bookings", { keyPath: "username" })
+            // Table-3
+            db.createObjectStore("Wishlists", { keyPath: "hotelName" })
+            // console.log("no database")
+        };
 
-    openRequest.onerror = function () {
-        console.error("Error", openRequest.error);
-    };
+        openRequest.onerror = function () {
+            console.error("Error", openRequest.error);
+        };
 
-    openRequest.onsuccess = function () {
-        db = openRequest.result;
-        console.warn("DB Connected")
-        console.log("DB Name: " + db.name)
-        // continue working with database using db object
-    };
-    showHideLink();
-</script>
+        openRequest.onsuccess = function () {
+            db = openRequest.result;
+            console.warn("DB Connected")
+            console.log("DB Name: " + db.name)
+            // continue working with database using db object
+        };
+        showHideLink();
+    </script>
 
-<script>
-    showHideLink()
-</script>
+    <script>
+        showHideLink()
+    </script>
 </body>
 
 </html>

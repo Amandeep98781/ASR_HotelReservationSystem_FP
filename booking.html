@@ -36,7 +36,7 @@
             padding-bottom: 30px;
         }
 
-        select#roomtype > option {
+        select#roomtype>option {
             font-weight: bold;
             letter-spacing: 1px;
             color: #495057;
@@ -54,13 +54,21 @@
             width: 100%;
             margin: 0 0 5px 0;
         }
-        progress::-webkit-progress-value { background: #265f18 !important; }
-        progress::-moz-progress-bar  { background: #265f18 !important; }
+
+        progress::-webkit-progress-value {
+            background: #265f18 !important;
+        }
+
+        progress::-moz-progress-bar {
+            background: #265f18 !important;
+        }
+
         /*Progress Bar*/
     </style>
 
 
 </head>
+
 <body>
 
     <!--HEADER-->
@@ -130,7 +138,8 @@
                 readonly>
 
             <div class="align-center">
-                <input type="submit" value="Submit" name="submit" id="submit" class="btn btn-success">
+                <input onclick="validation()" type="submit" value="Submit" name="submit" id="submit"
+                    class="btn btn-success">
                 <input type="reset" value="Reset" name="reset" id="reset" class="btn btn-dark">
             </div>
         </form>
@@ -176,111 +185,146 @@
     <!--//FOOTER-->
 
     <!-- PROGRESS BAR-->
-<script>
+    <script>
 
 
-    function setProgressbarValue()
-    {
-        var numValid = 0;
-        $('select,input[type=text],input[type=date],input[type=email],input[type=number]').each(function () {
-            if (this.validity.valid) {
-                console.log(this);
-                numValid++;
-            }
+        function setProgressbarValue() {
+            var numValid = 0;
+            $('select,input[type=text],input[type=date],input[type=email],input[type=number]').each(function () {
+                if (this.validity.valid) {
+                    console.log(this);
+                    numValid++;
+                }
+            });
+            var progress = $("#progress");
+            progress.attr("value", Math.round(numValid * 16.6));
+        }
+        $("input[required]").keyup(function () {
+            setProgressbarValue()
         });
-        var progress = $("#progress");
-        progress.attr("value", Math.round(numValid * 16.6));
-    }
-    $("input[required]").keyup(function () {
-        setProgressbarValue()
-    });
-    $("select,input[type=date]").change(function () {
-       setProgressbarValue();
-    });
-</script>
-<!-- //PROGRESS BAR-->
+        $("select,input[type=date]").change(function () {
+            setProgressbarValue();
+        });
+    </script>
+    <!-- //PROGRESS BAR-->
 
-<script>
-    let db = null;
-
-    // ADD BUTTON
-    let btnAdd = document.getElementById("submit");
-    btnAdd.addEventListener("click", addNewNote)
-
-    // ADD NEW NOTE
-    function addNewNote() {
-        let newNote = {
-            username: document.getElementById("username").value,
-            email: document.getElementById("email").value,
-            checkin: document.getElementById("checkin").value,
-            checkout: document.getElementById("checkout").value,
-            roomtype: document.getElementById("roomtype").value,
-            totalprice: document.getElementById("totalprice").value,
+    <script>
+        function validateEmail(email) {
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
         }
-        console.log(newNote)
-        const crudOpt = db.transaction("Bookings", "readwrite")
-        const noteObj = crudOpt.objectStore("Bookings");
-        noteObj.add(newNote);
-        console.log("Data Saved..!");
-        alert("Booking Done Successfully");
-        // viewNotes()
-    }
+        // constraints to ensure all fields are filled properly
+        function validation() {
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let checkin = document.getElementById("checkin").value;
+            let checkout = document.getElementById("checkout").value;
+            let roomtype = document.getElementById("roomtype").value;
 
-     // -------------------------------------------------------
-    //--> DATABASE CREATION
-    const openRequest = indexedDB.open("MyServiceDB", 1);
-
-    openRequest.onupgradeneeded = function (e) {
-        // triggers if the client had no database
-        // ...perform initialization...
-        db = e.target.result;
-        // Table-1
-        db.createObjectStore("Signup", {keyPath: "username"})
-        // Table-2
-        db.createObjectStore("Bookings", {keyPath: "username"})
-        // Table-3
-        db.createObjectStore("Wishlists", {keyPath: "hotelName"})
-        // console.log("no database")
-    };
-
-    openRequest.onerror = function () {
-        console.error("Error", openRequest.error);
-    };
-
-    openRequest.onsuccess = function () {
-        db = openRequest.result;
-        console.warn("DB Connected")
-        console.log("DB Name: " + db.name)
-        // continue working with database using db object
-    };
-</script>
-
-<!--ROOMS-->
-<script>
-    var Rooms = document.getElementById("roomtype");
-    var TotalPrice = document.getElementById("totalprice");
-
-    function changePrice() {
-        if (Rooms.value === "Single") {
-            TotalPrice.value = 500;
-        } else if (Rooms.value === "Double") {
-            TotalPrice.value = 800;
-        } else if (Rooms.value === "Triple") {
-            TotalPrice.value = 1200;
-        } else if (Rooms.value === "Quad") {
-            TotalPrice.value = 1500;
-        } else if (Rooms.value === "King") {
-            TotalPrice.value = 1800;
-        } else if (Rooms.value === "Twin") {
-            TotalPrice.value = 2000;
-        } else {
-            TotalPrice.value = 0;
+            if (username === '' && email === '' && checkin === '' && checkout === '' && roomtype === '') {
+                alert("All fields are mandatory.");
+                return false;
+            } else if (username === '' || username == null) {
+                alert("Username is required.");
+                return false;
+            } else if (!validateEmail(email)) {
+                alert("Please enter a valid email.");
+                return false;
+            } else if (checkin === '' || checkin == null) {
+                alert("Please enter checkin date.");
+                return false;
+            } else if (checkout === '' || checkout == null) {
+                alert("Please enter checkout date.");
+                return false;
+            } else if (roomtype === '' || roomtype == null) {
+                alert("Please select room type.");
+                return false;
+            } else {
+                addNewNote();
+            }
         }
-    }
-</script>
-<script>
-    showHideLink()
-</script>
+    </script>
+    <script>
+        let db = null;
+
+        // ADD BUTTON
+        //let btnAdd = document.getElementById("submit");
+        //btnAdd.addEventListener("click", addNewNote)
+
+        // ADD NEW NOTE
+        function addNewNote() {
+            let newNote = {
+                username: document.getElementById("username").value,
+                email: document.getElementById("email").value,
+                checkin: document.getElementById("checkin").value,
+                checkout: document.getElementById("checkout").value,
+                roomtype: document.getElementById("roomtype").value,
+                totalprice: document.getElementById("totalprice").value,
+            }
+            console.log(newNote)
+            const crudOpt = db.transaction("Bookings", "readwrite")
+            const noteObj = crudOpt.objectStore("Bookings");
+            noteObj.add(newNote);
+            console.log("Data Saved..!");
+            alert("Booking Done Successfully");
+            // viewNotes()
+        }
+
+        // -------------------------------------------------------
+        //--> DATABASE CREATION
+        const openRequest = indexedDB.open("MyServiceDB", 1);
+
+        openRequest.onupgradeneeded = function (e) {
+            // triggers if the client had no database
+            // ...perform initialization...
+            db = e.target.result;
+            // Table-1
+            db.createObjectStore("Signup", { keyPath: "username" })
+            // Table-2
+            db.createObjectStore("Bookings", { keyPath: "username" })
+            // Table-3
+            db.createObjectStore("Wishlists", { keyPath: "hotelName" })
+            // console.log("no database")
+        };
+
+        openRequest.onerror = function () {
+            console.error("Error", openRequest.error);
+        };
+
+        openRequest.onsuccess = function () {
+            db = openRequest.result;
+            console.warn("DB Connected")
+            console.log("DB Name: " + db.name)
+            // continue working with database using db object
+        };
+    </script>
+
+    <!--ROOMS-->
+    <script>
+        var Rooms = document.getElementById("roomtype");
+        var TotalPrice = document.getElementById("totalprice");
+
+        function changePrice() {
+            if (Rooms.value === "Single") {
+                TotalPrice.value = 500;
+            } else if (Rooms.value === "Double") {
+                TotalPrice.value = 800;
+            } else if (Rooms.value === "Triple") {
+                TotalPrice.value = 1200;
+            } else if (Rooms.value === "Quad") {
+                TotalPrice.value = 1500;
+            } else if (Rooms.value === "King") {
+                TotalPrice.value = 1800;
+            } else if (Rooms.value === "Twin") {
+                TotalPrice.value = 2000;
+            } else {
+                TotalPrice.value = 0;
+            }
+        }
+    </script>
+    <script>
+        showHideLink()
+    </script>
 
 </body>
 

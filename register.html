@@ -24,6 +24,13 @@
             text-align: center;
         }
 
+        @media only screen and (max-width: 600px) {
+            .form-container {
+                margin-left: 2%;
+                margin-right: 2%;
+            }
+        }
+
         .section-margin-padding-top {
             padding-top: 10px;
             margin-top: 30px;
@@ -76,6 +83,9 @@
             <li class="afterLogin"><a href="userDetails2.html" class="">My WishList</a>
             </li>
 
+            <li class="afterLogin"><a onclick="logout()" class="">
+                    Logout</a>
+            </li>
         </ul>
     </nav>
     <!--//HEADER-->
@@ -121,7 +131,8 @@
             <input type="checkbox" id="agree" name="agree" value="Yes"> <label>Agree with our policies.</label>
 
             <div class="align-center">
-                <input type="button" value="Submit" name="submit" id="submit" class="btn btn-success">
+                <input type="button" onclick="validation()" value="Submit" name="submit" id="submit"
+                    class="btn btn-success">
                 <input type="reset" value="Reset" name="reset" id="reset" class="btn btn-dark">
             </div>
         </form>
@@ -131,9 +142,9 @@
 
     <!--FOOTER-->
     <footer>
-        <div>
-            <div>
-                <div>
+        <div class="footer-wrapper">
+            <div class="nav-wrapper sm-text-center">
+                <div class="dots-wrapper">
                     <a style="color: white;text-decoration: none;margin-top: 10px" href="index.html">
                         Hotel Reservation System
                     </a>
@@ -150,15 +161,15 @@
                     </ul>
                 </div>
             </div>
-            <div style="margin-top: 30px">
+            <div class="nav-wrapper sm-text-center" style="margin-top: 30px">
                 <div>
                     <a class="" href="#" style="color: white;text-decoration: none">
                         All right Reserved
                     </a>
                 </div>
-                <div>
+                <div class="diplay-block">
                     <a class="" href="#" style="color: white;text-decoration: none">
-                        &#169; Created by ASR
+                        &copy; Created by ASR
                     </a>
                 </div>
             </div>
@@ -168,7 +179,7 @@
 
     <script>
         $("input[required],textarea").keyup(function () {
-    
+
             var numValid = 0;
             $('input[required],textarea').each(function () {
                 console.log(this)
@@ -176,14 +187,14 @@
                     numValid++;
                 }
             });
-    
+
             // var progress = $("#progress"),
             //     progressMessage = $("#progress-message");
             var progress = $("#progress");
-    
+
             progress.attr("value", Math.round(numValid * 14.28));
-    
-    
+
+
             // if (numValid == 0) {
             //     progress.attr("value", "0");
             //     // progressMessage.text("The form, it wants you.");
@@ -212,14 +223,65 @@
             // }
         });
     </script>
-    
+
+    <script>
+        function validation() {
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let website = document.getElementById("website").value;
+            let password = document.getElementById("password").value;
+            let confirmpassword = document.getElementById("confirmpassword").value;
+            let dob = document.getElementById("dob").value;
+            let checkbox = document.getElementById("agree");
+
+            var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
+            var regex = new RegExp(expression);
+
+            if (username === '' && email === '' && website === '' && password === '' && confirmpassword === '' && dob === '') {
+                alert("All fields are mandatory.");
+                return false;
+            } else if (username === '' || username == null) {
+                alert("Username is required.");
+                return false;
+            } else if (!validateEmail(email)) {
+                alert("Please enter a valid email.");
+                return false;
+            } else if (!website.match(regex)) {
+                alert("Please enter a valid url.");
+                return false;
+            } else if (password === '' || password == null) {
+                alert("Password is required.");
+                return false;
+            } else if (confirmpassword === '' || confirmpassword == null) {
+                alert("Confirm password is required.");
+                return false;
+            } else if (password !== confirmpassword) {
+                alert("Password and confirm password must match.");
+                return false;
+            } else if (dob === '' || dob == null) {
+                alert("Please enter your date of birth.");
+                return false;
+            } else if (!checkbox.checked) {
+                alert("Accept our policy.");
+                return false;
+            } else {
+                addNewNote();
+            }
+        }
+
+        function validateEmail(email) {
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+    </script>
+
     <script>
         let db = null;
-    
+
         // ADD BUTTON
-        let btnAdd = document.getElementById("submit");
-        btnAdd.addEventListener("click", addNewNote)
-    
+        // let btnAdd = document.getElementById("submit");
+        // btnAdd.addEventListener("click", addNewNote)
+
         // ADD NEW NOTE
         function addNewNote() {
             let rbM = document.getElementById("male");
@@ -247,36 +309,36 @@
         }
 
         // -------------------------------------------------------
-    //--> DATABASE CREATION
-    const openRequest = indexedDB.open("MyServiceDB", 1);
+        //--> DATABASE CREATION
+        const openRequest = indexedDB.open("MyServiceDB", 1);
 
-openRequest.onupgradeneeded = function (e) {
-    // triggers if the client had no database
-    // ...perform initialization...
-    db = e.target.result;
-    // Table-1
-    db.createObjectStore("Signup", {keyPath: "username"})
-    // Table-2
-    db.createObjectStore("Bookings", {keyPath: "username"})
-    // Table-3
-    db.createObjectStore("Wishlists", {keyPath: "hotelName"})
-    // console.log("no database")
-};
+        openRequest.onupgradeneeded = function (e) {
+            // triggers if the client had no database
+            // ...perform initialization...
+            db = e.target.result;
+            // Table-1
+            db.createObjectStore("Signup", { keyPath: "username" })
+            // Table-2
+            db.createObjectStore("Bookings", { keyPath: "username" })
+            // Table-3
+            db.createObjectStore("Wishlists", { keyPath: "hotelName" })
+            // console.log("no database")
+        };
 
-openRequest.onerror = function () {
-    console.error("Error", openRequest.error);
-};
+        openRequest.onerror = function () {
+            console.error("Error", openRequest.error);
+        };
 
-openRequest.onsuccess = function () {
-    db = openRequest.result;
-    console.warn("DB Connected")
-    console.log("DB Name: " + db.name)
-    // continue working with database using db object
-};
+        openRequest.onsuccess = function () {
+            db = openRequest.result;
+            console.warn("DB Connected")
+            console.log("DB Name: " + db.name)
+            // continue working with database using db object
+        };
     </script>
-<script>
-    showHideLink()
-</script>
+    <script>
+        showHideLink()
+    </script>
 
 </body>
 

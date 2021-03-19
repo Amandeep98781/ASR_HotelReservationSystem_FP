@@ -3,23 +3,24 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My WishList</title>
+    <title>My List</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!--    External Links-->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/style2.css">
+
     <!--    Font Awesome-->
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!--    jQuery-->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="main.js"></script>
-
 
     <style>
         .form-container {
@@ -43,8 +44,11 @@
             margin-top: 30px;
             padding-bottom: 30px;
         }
-     /*jQuery Tabs*/
-     .ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+
+        /*jQuery Tabs*/
+        .ui-state-active a,
+        .ui-state-active a:link,
+        .ui-state-active a:visited {
             background: #8458B3;
             color: #ffffff;
         }
@@ -115,12 +119,13 @@
     </style>
 
     <script>
-        $(function () {
-            $("#tabs").tabs();
-        });
+        // $(function () {
+        //     $("#tabs").tabs();
+        // });
     </script>
 </head>
-<body onload="viewWishlist();authAction();">
+
+<body onload="authAction();">
 
     <!--HEADER-->
     <nav class="navbar header">
@@ -142,12 +147,28 @@
             </li>
             <li class="afterLogin"><a href="userDetails2.html" class="">My WishList</a>
             </li>
+            <li class="afterLogin"><a href="viewbookings.html" class="">My Bookings</a>
+            </li>
             <li class="afterLogin"><a onclick="logout()" class="">
                     Logout</a>
             </li>
         </ul>
     </nav>
     <!--//HEADER-->
+
+    <div class="form-container section-margin-paddi ng-top">
+        <div style="text-align: center;color: #8458B3">
+            <h2 style="margin: 50px 0;">Your Wishlist</h2>
+        </div>
+        <div id="tabs" style="overflow-x: scroll;">
+
+            <div id="tabs-1">
+                <div id="wishlistDetails"></div>
+            </div>
+        </div>
+    </div>
+
+    <div style="min-height: 120px;"></div>
 
     <!--FOOTER-->
     <footer>
@@ -188,103 +209,127 @@
     <!--//FOOTER-->
 
     <script>
-        let db = null;
-    
+        var db;
+
         // VIEW
         function viewWishlist() {
             const crudOpt = db.transaction("Wishlists", "readonly")
             const noteObj = crudOpt.objectStore("Wishlists");
             const viewrequest = noteObj.openCursor();
+
             let tabData = `<table border='1' style="border: 1px solid #d7d7d7;"><thead>
-                            <tr class="table-row">
-                            <th class="table-heading">Hotel&nbsp;Name</th>
-                            <th class="table-heading">City</th>
-                            <th class="table-heading">Price</th>
-                            <th class="table-heading">Distance</th>
-                            <th class="table-heading">Controls</th>
-                            </tr>
-                            </thead>
-                            <tbody>`
-    
+                        <tr class="table-row">
+                        <th class="table-heading">Hotel&nbsp;Name</th>
+                        <th class="table-heading">City</th>
+                        <th class="table-heading">Price</th>
+                        <th class="table-heading">Distance</th>
+                        <th class="table-heading">Controls</th>
+                        </tr>
+                        </thead>
+                        <tbody>`
+
             viewrequest.onsuccess = e => {
                 const cursor = e.target.result
 
                 if (cursor) {
 
-var username_cookie = getCookie("username");
-if (cursor.value.username == username_cookie) {
-    tabData += `<tr>
-                <td class="table-data">${cursor.key}</td>
-                <td class="table-data">${cursor.value.hotelCity}</td>
-                <td class="table-data">${cursor.value.hotelPrice}</td>
-                <td class="table-data">${cursor.value.hotelDistance}</td>
-                <td class="table-data"><input onclick="deleteWishlist('${cursor.value.hotelName}')" class="btn delete-btn" type="button" value="Delete"></td>
-                </tr>`
-}
+                    var username_cookie = getCookie("username");
+                    if (cursor.value.username == username_cookie) {
+                        tabData += `<tr>
+                                <td class="table-data">${cursor.key}</td>
+                                <td class="table-data">${cursor.value.hotelCity}</td>
+                                <td class="table-data">${cursor.value.hotelPrice}</td>
+                                <td class="table-data">${cursor.value.hotelDistance}</td>
+                                <td class="table-data"><input onclick="deleteWishlist('${cursor.value.hotelName}')" class="btn delete-btn" type="button" value="Delete"></td>
+                                </tr>`
+                    }
 
-cursor.continue();
-} else {
-tabData += "</tbody></table>";
-document.getElementById("wishlistDetails").innerHTML = tabData;
-}
-}
-}
-
- // DELETE
- function deleteWishlist(hotelName) {
-        if (confirm("Are you sure to delete")) {
-            const crudOpt = db.transaction("Wishlists", "readwrite")
-            const noteObj = crudOpt.objectStore("Wishlists");
-            noteObj.delete(hotelName);
-            console.log("data deleted");
-            viewWishlist();
+                    cursor.continue();
+                } else {
+                    tabData += "</tbody></table>";
+                    document.getElementById("wishlistDetails").innerHTML = tabData;
+                }
+            }
         }
-    }
 
-    // GET COOKIE
+        // DELETE
+        function deleteWishlist(hotelName) {
+            if (confirm("Are you sure to delete")) {
+                const crudOpt = db.transaction("Wishlists", "readwrite")
+                const noteObj = crudOpt.objectStore("Wishlists");
+                noteObj.delete(hotelName);
+                console.log("data deleted");
+                viewWishlist();
+            }
+        }
 
-    // AUTH ACTION
-    function authAction() {
 
+        // AUTH ACTION
+        function authAction() {
+            var username_cookie = getCookie("username");
+            if (username_cookie == '') {
+                window.location.assign("login.html");
 
-var username_cookie = getCookie("username");
-if (username_cookie == '') {
-    window.location.assign("login.html");
+            }
+            // const crudOpt = db.transaction("Signup", "readonly")
+            // const noteObj = crudOpt.objectStore("Signup");
+            // const viewrequest = noteObj.openCursor();
+            // var isLoggedIn = false;
+            // viewrequest.onsuccess = e => {
+            //     const cursor = e.target.result
+            //     var username_cookie = getCookie("username");
+            //     if (cursor) {
+            //         var username_cookie = getCookie("username");
+            //         console.log("Cookie Name: " + username_cookie)
+            //
+            //         if (cursor.key === username_cookie) {
+            //             console.log('Matched User');
+            //             // alert("Welcome User");
+            //         }
+            //
+            //         cursor.continue();
+            //     } else {
+            //         if (isLoggedIn === false) {
+            //             window.location.assign("login.html");
+            //         }
+            //
+            //     }
+            // }
+        }
 
-}
-}
- // -------------------------------------------------------
-    //--> DATABASE CREATION
-    const openRequest = indexedDB.open("MyServiceDB", 1);
+        // -------------------------------------------------------
+        //--> DATABASE CREATION
+        const openRequest = indexedDB.open("MyServiceDB", 1);
 
-    openRequest.onupgradeneeded = function (e) {
-        // triggers if the client had no database
-        // ...perform initialization...
-        db = e.target.result;
-        // Table-1
-        db.createObjectStore("Signup", {keyPath: "username"})
-        // Table-2
-        db.createObjectStore("Bookings", {keyPath: "username"})
-        // Table-3
-        db.createObjectStore("Wishlists", {keyPath: "hotelName"})
-        // console.log("no database")
-    };
+        openRequest.onupgradeneeded = function (e) {
+            // triggers if the client had no database
+            // ...perform initialization...
+            db = e.target.result;
+            // Table-1
+            db.createObjectStore("Signup", { keyPath: "username" })
+            // Table-2
+            db.createObjectStore("Bookings", { keyPath: "username" })
+            // Table-3
+            db.createObjectStore("Wishlists", { keyPath: "hotelName" })
+            // console.log("no database")
+        };
 
-    openRequest.onerror = function () {
-        console.error("Error", openRequest.error);
-    };
+        openRequest.onerror = function () {
+            console.error("Error", openRequest.error);
+        };
 
-    openRequest.onsuccess = function () {
-        db = openRequest.result;
-        console.warn("DB Connected")
-        console.log("DB Name: " + db.name)
-        // continue working with database using db object
-    };
-</script>
-   
-   
-   <script>
+        openRequest.onsuccess = function () {
+            db = openRequest.result;
+            viewWishlist();
+            // console.warn("DB Connected")
+            // console.log("DB Name: " + db.name)
+            // continue working with database using db object
+        };
+    </script>
+
+    <script>
         showHideLink()
     </script>
 </body>
+
 </html>
