@@ -628,6 +628,35 @@
             }
         }
     }
+
+    // -------------------------------------------------------
+    //--> DATABASE CREATION
+    const openRequest = indexedDB.open("MyServiceDB", 1);
+
+    openRequest.onupgradeneeded = function (e) {
+        // triggers if the client had no database
+        // ...perform initialization...
+        db = e.target.result;
+        // Table-1
+        db.createObjectStore("Signup", {keyPath: "username"})
+        // Table-2
+        db.createObjectStore("Bookings", {keyPath: "username"})
+        // Table-3
+        db.createObjectStore("Wishlists", {keyPath: "hotelName"})
+        // console.log("no database")
+    };
+
+    openRequest.onerror = function () {
+        console.error("Error", openRequest.error);
+    };
+
+    openRequest.onsuccess = function () {
+        db = openRequest.result;
+        console.warn("DB Connected")
+        console.log("DB Name: " + db.name)
+        // continue working with database using db object
+    };
+    
    </script>
     <script>
     showHideLink()
