@@ -114,6 +114,81 @@
     </footer>
     <!--//FOOTER-->
 
+    <script>
+        let db = null;
+    
+        // LOGIN BUTTON
+        let ViewSignup = document.getElementById("login");
+        ViewSignup.addEventListener("click", loginAction);
+    
+        function loginAction() {
+            let username = document.getElementById("username");
+            let password = document.getElementById("password");
+    
+            const crudOpt = db.transaction("Signup", "readonly")
+            const noteObj = crudOpt.objectStore("Signup");
+            const viewrequest = noteObj.openCursor();
+            // console.log(viewrequest);
+    
+            var isLoggedIn=false;
+            viewrequest.onsuccess = e => {
+                const cursor = e.target.result
+    
+                if (cursor) {
+                    // console.log(cursor);
+                    // console.log(cursor.key);
+                    // console.log(cursor.value.password);
+                    if (cursor.key === username.value && cursor.value.password === password.value) {
+                        // console.log("Matched");
+                        isLoggedIn=true;
+                        document.cookie = "username="+username.value;
+                        var x = document.cookie;
+                        console.log(x);
+                        window.location.assign("userDetails2.html");
+                    }
+    
+                    cursor.continue();
+                } else {
+                    if(isLoggedIn===false) {
+                        alert("Incorrect Username Or Password")
+                    }
+    
+    
+    
+                }
+            }
+        }
+
+    // -------------------------------------------------------
+    //--> DATABASE CREATION
+    const openRequest = indexedDB.open("MyServiceDB", 1);
+
+    openRequest.onupgradeneeded = function (e) {
+        // triggers if the client had no database
+        // ...perform initialization...
+        db = e.target.result;
+        // Table-1
+        db.createObjectStore("Signup", {keyPath: "username"})
+        // Table-2
+        db.createObjectStore("Bookings", {keyPath: "username"})
+        // Table-3
+        db.createObjectStore("Wishlists", {keyPath: "hotelName"})
+        // console.log("no database")
+    };
+
+    openRequest.onerror = function () {
+        console.error("Error", openRequest.error);
+    };
+
+    openRequest.onsuccess = function () {
+        db = openRequest.result;
+        console.warn("DB Connected")
+        console.log("DB Name: " + db.name)
+        // continue working with database using db object
+    };
+    showHideLink();
+</script>
+
 <script>
     showHideLink()
 </script>
