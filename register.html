@@ -10,6 +10,44 @@
     <!--    External Links-->
     <link rel="stylesheet" href="css/style.css">
 
+    <style>
+        .form-container {
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+
+        .align-center {
+            text-align: center;
+        }
+
+        .section-margin-padding-top {
+            padding-top: 10px;
+            margin-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        /*Progress Bar*/
+        .progress-wrap {
+            text-align: center;
+            font-size: 50px;
+            color: white;
+            margin: 0 0 20px 0;
+        }
+
+        .progress-wrap progress {
+            width: 100%;
+            margin: 0 0 5px 0;
+        }
+
+        progress::-webkit-progress-value {
+            background: #265f18 !important;
+        }
+
+        progress::-moz-progress-bar {
+            background: #265f18 !important;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -38,6 +76,53 @@
     </nav>
     <!--//HEADER-->
 
+    <!--SIGNUP FORM-->
+    <div class="form-container section-margin-padding-top">
+        <h2 class="align-center">Registration</h2>
+
+        <form accept-charset="UTF-8" action="#" class="pro-form" id="pro-form" method="post">
+
+            <div class="progress-wrap">
+                <progress max="100" value="0" id="progress"></progress>
+            </div>
+
+            <label for="username">Name</label>
+            <input type="text" id="username" name="username" required placeholder="Enter Name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" required name="email" placeholder="@gmail.com">
+
+            <label for="website">Personal URL</label>
+            <input type="url" pattern="https?://.+" title="Include http://" id="website" name="website" required
+                placeholder="Personal URL">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" required name="password" placeholder="Password">
+
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" id="confirmpassword" required name="confirmpassword"
+                placeholder="Confirm your Password">
+
+            <label for="dob">Year Of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label>Gender</label>
+            <input type="radio" name="gender" id="male" value="Male" checked> Male
+            <input type="radio" name="gender" id="female" value="Female"> Female
+            <br>
+            <div style="margin-top: 15px">
+                <label for="comments">Comments</label>
+                <textarea name="comments" id="comments" required placeholder="Enter Comments"></textarea>
+            </div>
+            <input type="checkbox" id="agree" name="agree" value="Yes"> <label>Agree with our policies.</label>
+
+            <div class="align-center">
+                <input type="button" value="Submit" name="submit" id="submit" class="btn btn-success">
+                <input type="reset" value="Reset" name="reset" id="reset" class="btn btn-dark">
+            </div>
+        </form>
+    </div>
+    <!--//SIGNUP FORM-->
 
 
     <!--FOOTER-->
