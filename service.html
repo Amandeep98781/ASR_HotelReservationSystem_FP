@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>My Wishlist</title>
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    
-      
-    
-        <!--    FONTS-->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-    
-        <!--    FONT_AWESOME-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-        <script src="main.js"></script>
-        <style>
-            .hotel-name-container {
+
+<head>
+    <meta charset="UTF-8">
+    <title>Services</title>
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--    External Links-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
+
+
+
+    <!--    FONTS-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <!--    FONT_AWESOME-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <script src="main.js"></script>
+    <style>
+        .hotel-name-container {
             text-align: center;
         }
 
-        .hotel-name-container > a {
+        .hotel-name-container>a {
             text-decoration: none;
             font-size: 25px;
             letter-spacing: 1px;
@@ -55,7 +60,7 @@
             text-align: right;
         }
 
-        .reviews > span {
+        .reviews>span {
             display: block;
             background: #197de2;
             color: #fff;
@@ -63,36 +68,38 @@
             border-radius: 4px;
             font-size: 18px;
         }
-              </style>
-    </head>
-    <body>
-        <!--HEADER-->
-<nav class="navbar header">
-    <ul>
-        <li><a href="index.html" style="font-weight: bolder;font-size: 19px">
-            Hotel Reservation System</a>
-        </li>
-        <li><a href="booking.html">Booking</a></li>
-        <li><a href="service.html">Services</a></li>
-        <li><a href="about.html">About Us</a></li>
-        <li><a href="contact.html">Contact</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="testimonials.html">Testimonials</a></li>
-        <li class="beforeLogin"><a href="login.html" class="">
-            Login</a>
-        </li>
-        <li class="beforeLogin"><a href="register.html" class="">
-            Register</a>
-        </li>
-        <li class="afterLogin"><a href="userDetails2.html" class="">My WishList</a>
-        </li>
-        <li class="afterLogin"><a onclick="logout()" class="">
-            Logout</a>
-        </li>
-    </ul>
-</nav>
-<!--//HEADER-->
+    </style>
+</head>
 
+<body>
+    <!--HEADER-->
+    <nav class="navbar header">
+        <ul>
+            <li><a href="index.html" style="font-weight: bolder;font-size: 19px">
+                    Hotel Reservation System</a>
+            </li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="service.html">Services</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="testimonials.html">Testimonials</a></li>
+            <li class="beforeLogin"><a href="login.html" class="">
+                    Login</a>
+            </li>
+            <li class="beforeLogin"><a href="register.html" class="">
+                    Register</a>
+            </li>
+            <li class="afterLogin"><a href="userDetails2.html" class="">My WishList</a>
+            </li>
+            <li class="afterLogin"><a onclick="logout()" class="">
+                    Logout</a>
+            </li>
+        </ul>
+    </nav>
+    <!--//HEADER-->
+
+   
 <!--SERVICES-->
 <section class="container">
     <div class="service-title">Hotels</div>
@@ -143,45 +150,49 @@
             </div>
         </div>
 
-        <ul class="about-ul">
-            <li>
-                <b style="color: #316300;font-size: 22px;"><span><i class="fas fa-rupee-sign"
-                                                                    aria-hidden="true"></i></span>
-                    6,800</b>&nbsp;&nbsp;per room / per night
-            </li> &nbsp;&nbsp;&nbsp;&nbsp;
-            <li style="margin-top: 25px;">
-                <b><span><i class="fas fa-landmark" aria-hidden="true"></i></span> Mumbai</b>
-            </li>
-            <li style="margin-top: 25px;">
-                <b><span><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span> 6.8 km to City
-                    Centre</b>
-            </li>
-        </ul>
-
-         <!--    3-->
-         <div class="row-service2">
+        <!--    2-->
+        <div class="row-service2">
             <div class="">
-                <img src="gallery/hotel-3.webp" class="img-fluid"
-                     alt="About Us">
+                <img src="gallery/hotel-2.jpg" class="img-fluid" alt="About Us">
             </div>
             <div class="boxView">
                 <div class="hotel-name-container">
-                    <h2 class="hotel-title">HOTEL CORDOBA CENTER</h2>
+                    <h2 class="hotel-title">HYATT Hotel</h2>
                 </div>
                 <div class="review-container">
                     <div class="stars">
                         <i class="far fa-star star-color"></i>
                         <i class="far fa-star star-color"></i>
                         <i class="far fa-star star-color"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
                     </div>
                     <div class="reviews">
-                        <span>7.6</span>
+                        <span>9.8</span>
                     </div>
                 </div>
 
-                 <!--    3-->
+                <ul class="about-ul">
+                    <li>
+                        <b style="color: #316300;font-size: 22px;"><span><i class="fas fa-rupee-sign"
+                                                                            aria-hidden="true"></i></span>
+                            6,800</b>&nbsp;&nbsp;per room / per night
+                    </li> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <li style="margin-top: 25px;">
+                        <b><span><i class="fas fa-landmark" aria-hidden="true"></i></span> Mumbai</b>
+                    </li>
+                    <li style="margin-top: 25px;">
+                        <b><span><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span> 6.8 km to City
+                            Centre</b>
+                    </li>
+                </ul>
+
+                <div><a onclick="saveWishlist(2)" href="#" class="btn about-btn btn-transparent"><i
+                        class="fas fa-plus-circle"></i> Add To Wishlist</a></div>
+            </div>
+        </div>
+
+        <!--    3-->
         <div class="row-service2">
             <div class="">
                 <img src="gallery/hotel-3.webp" class="img-fluid"
@@ -218,9 +229,13 @@
                             Centre</b>
                     </li>
                 </ul>
-            </div>
 
-             <!--    4-->
+                <div><a onclick="saveWishlist(3)" href="#" class="btn about-btn btn-transparent"><i
+                        class="fas fa-plus-circle"></i> Add To Wishlist</a></div>
+            </div>
+        </div>
+
+        <!--    4-->
         <div class="row-service2">
             <div class="">
                 <img src="gallery/hotel-4.webp" class="img-fluid"
@@ -257,9 +272,13 @@
                             Centre</b>
                     </li>
                 </ul>
-            </div>
 
-             <!--    5-->
+                <div><a onclick="saveWishlist(4)" href="#" class="btn about-btn btn-transparent"><i
+                        class="fas fa-plus-circle"></i> Add To Wishlist</a></div>
+            </div>
+        </div>
+
+        <!--    5-->
         <div class="row-service2">
             <div class="">
                 <img src="gallery/hotel-5.webp" class="img-fluid"
@@ -297,9 +316,12 @@
                     </li>
                 </ul>
 
+                <div><a onclick="saveWishlist(5)" href="#" class="btn about-btn btn-transparent"><i
+                        class="fas fa-plus-circle"></i> Add To Wishlist</a></div>
             </div>
+        </div>
 
-             <!--    6-->
+        <!--    6-->
         <div class="row-service2">
             <div class="">
                 <img src="gallery/hotel-6.webp" class="img-fluid"
@@ -336,6 +358,279 @@
                             Centre</b>
                     </li>
                 </ul>
-            </div>
 
-    </body>
+                <div><a onclick="saveWishlist(6)" href="#" class="btn about-btn btn-transparent"><i
+                        class="fas fa-plus-circle"></i> Add To Wishlist</a></div>
+            </div>
+        </div>
+
+        <!--    7-->
+        <div class="row-service2">
+            <div class="">
+                    <img src="gallery/hotel-7.jpg" class="img-fluid"
+                     alt="About Us">
+            </div>
+            <div class="boxView">
+                <div class="hotel-name-container">
+                    <h2 class="hotel-title">THE PARK</h2>
+                </div>
+                <div class="review-container">
+                    <div class="stars">
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                    <div class="reviews">
+                        <span>8.6</span>
+                    </div>
+                </div>
+
+                <ul class="about-ul">
+                    <li>
+                        <b style="color: #316300;font-size: 22px;"><span><i class="fas fa-rupee-sign"
+                                                                            aria-hidden="true"></i></span>
+                            2,900</b>&nbsp;&nbsp;per room / per night
+                    </li> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <li style="margin-top: 25px;">
+                        <b><span><i class="fas fa-landmark" aria-hidden="true"></i></span> Chennai</b>
+                    </li>
+                    <li style="margin-top: 25px;">
+                        <b><span><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span> 2.6 km to City
+                            Centre</b>
+                    </li>
+                </ul>
+
+                <div><a onclick="saveWishlist(7)" href="#" class="btn about-btn btn-transparent"><i
+                        class="fas fa-plus-circle"></i> Add To Wishlist</a></div>
+            </div>
+        </div>
+
+        <!--    8-->
+        <div class="row-service2">
+            <div class="">
+                <img src="gallery/hotel-8.webp" class="img-fluid"
+                     alt="About Us">
+            </div>
+            <div class="boxView">
+                <div class="hotel-name-container">
+                    <h2 class="hotel-title">HOTEL YOIS</h2>
+                </div>
+                <div class="review-container">
+                    <div class="stars">
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
+                        <i class="far fa-star star-color"></i>
+                    </div>
+                    <div class="reviews">
+                        <span>8.9</span>
+                    </div>
+                </div>
+
+                <ul class="about-ul">
+                    <li>
+                        <b style="color: #316300;font-size: 22px;"><span><i class="fas fa-rupee-sign"
+                                                                            aria-hidden="true"></i></span>
+                            3,900</b>&nbsp;&nbsp;per room / per night
+                    </li> &nbsp;&nbsp;&nbsp;&nbsp;
+                    <li style="margin-top: 25px;">
+                        <b><span><i class="fas fa-landmark" aria-hidden="true"></i></span> Jaipur</b>
+                    </li>
+                    <li style="margin-top: 25px;">
+                        <b><span><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span> 3.6 km to City
+                            Centre</b>
+                    </li>
+                </ul>
+
+                <div><a onclick="saveWishlist(8)" href="#" class="btn about-btn btn-transparent"><i
+                        class="fas fa-plus-circle"></i> Add To Wishlist</a></div>
+            </div>
+        </div>
+
+    </form>
+</section>
+<!--//SERVICES-->
+
+<!--FOOTER-->
+<footer>
+    <div class="footer-wrapper">
+        <div class="nav-wrapper sm-text-center">
+            <div class="dots-wrapper">
+                <a class="footer-title"
+                   style="color: white;text-decoration: none;margin-top: 10px" href="index.html">
+                    Hotel Reservation System
+                </a>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="nav-wrapper sm-text-center" style="margin-top: 30px">
+            <div class="diplay-block">
+                <a class="" href="#" style="color: white;text-decoration: none">
+                    All right Reserved
+                </a>
+            </div>
+            <div class="diplay-block">
+                <a class="" href="#" style="color: white;text-decoration: none">
+                    &#169; Created by ASR
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--//FOOTER-->
+
+<script>
+    let db = null;
+
+    // ADD
+    function saveWishlist(id) {
+
+        var username_cookie = getCookie("username");
+        console.log("Cookie Name: " + username_cookie)
+
+        if (username_cookie == '') {
+            window.location.assign('login.html');
+
+        } else {
+            console.log(id);
+            if (id === 1) {
+                let wishlist = {
+                    "hotelName": "JW MARRIOTT HOTEL",
+                    "hotelPrice": 3500,
+                    "hotelCity": "Delh",
+                    "hotelDistance": "3.2 km to City Centre",
+                    "username": username_cookie
+                }
+                console.log(wishlist);
+                const crudOpt = db.transaction("Wishlists", "readwrite")
+                const noteObj = crudOpt.objectStore("Wishlists");
+                noteObj.add(wishlist)
+                console.log("Data Saved..!");
+                alert("Successfully Added To Wishlist");
+            } else if (id === 2) {
+                let wishlist = {
+                    "hotelName": "HYATT Hotel",
+                    "hotelPrice": 6800,
+                    "hotelCity": "Mumbai",
+                    "hotelDistance": "6.8 km to City Centre",
+                    "username": username_cookie
+                }
+                console.log(wishlist);
+                console.log(wishlist);
+                const crudOpt = db.transaction("Wishlists", "readwrite")
+                const noteObj = crudOpt.objectStore("Wishlists");
+                noteObj.add(wishlist);
+                console.log("Data Saved..!");
+                alert("Successfully Added To Wishlist");
+            } else if (id === 3) {
+                let wishlist = {
+                    "hotelName": "HOTEL CORDOBA CENTER",
+                    "hotelPrice": 7300,
+                    "hotelCity": "Kolkata",
+                    "hotelDistance": "2.5 km to City Centre",
+                    "username": username_cookie
+                }
+                console.log(wishlist);
+                console.log(wishlist);
+                const crudOpt = db.transaction("Wishlists", "readwrite")
+                const noteObj = crudOpt.objectStore("Wishlists");
+                noteObj.add(wishlist);
+                console.log("Data Saved..!");
+                alert("Successfully Added To Wishlist");
+            } else if (id === 4) {
+                let wishlist = {
+                    "hotelName": "HOTEL COUNTRY",
+                    "hotelPrice": 5500,
+                    "hotelCity": "Agra",
+                    "hotelDistance": " 5.5 km to City Centre",
+                    "username": username_cookie
+                }
+                console.log(wishlist);
+                console.log(wishlist);
+                const crudOpt = db.transaction("Wishlists", "readwrite")
+                const noteObj = crudOpt.objectStore("Wishlists");
+                noteObj.add(wishlist);
+                console.log("Data Saved..!");
+                alert("Successfully Added To Wishlist");
+            } else if (id === 5) {
+                let wishlist = {
+                    "hotelName": "HOTEL GLO",
+                    "hotelPrice": 4500,
+                    "hotelCity": "Bengaluru",
+                    "hotelDistance": " 5.5 km to City Centre",
+                    "username": username_cookie
+                }
+                console.log(wishlist);
+                console.log(wishlist);
+                const crudOpt = db.transaction("Wishlists", "readwrite")
+                const noteObj = crudOpt.objectStore("Wishlists");
+                noteObj.add(wishlist);
+                console.log("Data Saved..!");
+                alert("Successfully Added To Wishlist");
+            } else if (id === 6) {
+                let wishlist = {
+                    "hotelName": "HYATT PLACE",
+                    "hotelPrice": 7500,
+                    "hotelCity": "Delhi",
+                    "hotelDistance": "1.4 km to City Centre",
+                    "username": username_cookie
+                }
+                console.log(wishlist);
+                console.log(wishlist);
+                const crudOpt = db.transaction("Wishlists", "readwrite")
+                const noteObj = crudOpt.objectStore("Wishlists");
+                noteObj.add(wishlist);
+                console.log("Data Saved..!");
+                alert("Successfully Added To Wishlist");
+            }  else if (id === 7) {
+                let wishlist = {
+                    "hotelName": "THE PARK",
+                    "hotelPrice": 2900,
+                    "hotelCity": "Chennai",
+                    "hotelDistance": "2.6 km to City Centre",
+                    "username": username_cookie
+                }
+                console.log(wishlist);
+                console.log(wishlist);
+                const crudOpt = db.transaction("Wishlists", "readwrite")
+                const noteObj = crudOpt.objectStore("Wishlists");
+                noteObj.add(wishlist);
+                console.log("Data Saved..!");
+                alert("Successfully Added To Wishlist");
+            } else if (id === 8) {
+                let wishlist = {
+                    "hotelName": "HOTEL YOIS",
+                    "hotelPrice": 3900,
+                    "hotelCity": "Jaipur",
+                    "hotelDistance": "3.6 km to City Centre",
+                    "username": username_cookie
+                }
+                console.log(wishlist);
+                console.log(wishlist);
+                const crudOpt = db.transaction("Wishlists", "readwrite")
+                const noteObj = crudOpt.objectStore("Wishlists");
+                noteObj.add(wishlist);
+                console.log("Data Saved..!");
+                alert("Successfully Added To Wishlist");
+            }
+        }
+    }
+   </script>
+    <script>
+    showHideLink()
+</script>
+</body>
+</html>

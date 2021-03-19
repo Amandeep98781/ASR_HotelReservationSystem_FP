@@ -9,6 +9,10 @@
 
     <!--    External Links-->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <!--    jQuery-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="main.js"></script>
     <style>
         .form-container {
             margin-left: 25%;
@@ -54,8 +58,9 @@
         progress::-moz-progress-bar  { background: #265f18 !important; }
         /*Progress Bar*/
     </style>
-</head>
 
+
+</head>
 <body>
 
     <!--HEADER-->
@@ -170,6 +175,60 @@
     </footer>
     <!--//FOOTER-->
 
+    <!-- PROGRESS BAR-->
+<script>
+
+
+    function setProgressbarValue()
+    {
+        var numValid = 0;
+        $('select,input[type=text],input[type=date],input[type=email],input[type=number]').each(function () {
+            if (this.validity.valid) {
+                console.log(this);
+                numValid++;
+            }
+        });
+        var progress = $("#progress");
+        progress.attr("value", Math.round(numValid * 16.6));
+    }
+    $("input[required]").keyup(function () {
+        setProgressbarValue()
+    });
+    $("select,input[type=date]").change(function () {
+       setProgressbarValue();
+    });
+</script>
+<!-- //PROGRESS BAR-->
+
+<script>
+    let db = null;
+
+    // ADD BUTTON
+    let btnAdd = document.getElementById("submit");
+    btnAdd.addEventListener("click", addNewNote)
+
+    // ADD NEW NOTE
+    function addNewNote() {
+        let newNote = {
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            checkin: document.getElementById("checkin").value,
+            checkout: document.getElementById("checkout").value,
+            roomtype: document.getElementById("roomtype").value,
+            totalprice: document.getElementById("totalprice").value,
+        }
+        console.log(newNote)
+        const crudOpt = db.transaction("Bookings", "readwrite")
+        const noteObj = crudOpt.objectStore("Bookings");
+        noteObj.add(newNote);
+        console.log("Data Saved..!");
+        alert("Booking Done Successfully");
+        // viewNotes()
+    }
+</script>
+<script>
+    showHideLink()
+</script>
 
 </body>
 

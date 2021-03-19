@@ -6,6 +6,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+
+    <!--    External Links-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <!--    jQuery-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="main.js"></script>
+
+    <style>
+        .form-container {
+            margin-left: 25%;
+            margin-right: 25%;
+        }
+
+        .align-center {
+            text-align: center;
+        }
+
+        .section-margin-padding-top {
+            padding-top: 10px;
+            margin-top: 30px;
+            padding-bottom: 30px;
+        }
+
+        /*Progress Bar*/
+        .progress-wrap {
+            text-align: center;
+            font-size: 50px;
+            color: white;
+            margin: 0 0 20px 0;
+        }
+
+        .progress-wrap progress {
+            width: 100%;
+            margin: 0 0 5px 0;
+        }
+
+        progress::-webkit-progress-value {
+            background: #265f18 !important;
+        }
+
+        progress::-moz-progress-bar {
+            background: #265f18 !important;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -34,7 +80,54 @@
     </nav>
     <!--//HEADER-->
 
-    
+    <!--SIGNUP FORM-->
+    <div class="form-container section-margin-padding-top">
+        <h2 class="align-center">Registration</h2>
+
+        <form accept-charset="UTF-8" action="#" class="pro-form" id="pro-form" method="post">
+
+            <div class="progress-wrap">
+                <progress max="100" value="0" id="progress"></progress>
+            </div>
+
+            <label for="username">Name</label>
+            <input type="text" id="username" name="username" required placeholder="Enter Name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" required name="email" placeholder="@gmail.com">
+
+            <label for="website">Personal URL</label>
+            <input type="url" pattern="https?://.+" title="Include http://" id="website" name="website" required
+                placeholder="Personal URL">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" required name="password" placeholder="Password">
+
+            <label for="confirmpassword">Confirm Password</label>
+            <input type="password" id="confirmpassword" required name="confirmpassword"
+                placeholder="Confirm your Password">
+
+            <label for="dob">Year Of Birth</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label>Gender</label>
+            <input type="radio" name="gender" id="male" value="Male" checked> Male
+            <input type="radio" name="gender" id="female" value="Female"> Female
+            <br>
+            <div style="margin-top: 15px">
+                <label for="comments">Comments</label>
+                <textarea name="comments" id="comments" required placeholder="Enter Comments"></textarea>
+            </div>
+            <input type="checkbox" id="agree" name="agree" value="Yes"> <label>Agree with our policies.</label>
+
+            <div class="align-center">
+                <input type="button" value="Submit" name="submit" id="submit" class="btn btn-success">
+                <input type="reset" value="Reset" name="reset" id="reset" class="btn btn-dark">
+            </div>
+        </form>
+    </div>
+    <!--//SIGNUP FORM-->
+
 
     <!--FOOTER-->
     <footer>
@@ -72,6 +165,90 @@
         </div>
     </footer>
     <!--//FOOTER-->
+
+    <script>
+        $("input[required],textarea").keyup(function () {
+    
+            var numValid = 0;
+            $('input[required],textarea').each(function () {
+                console.log(this)
+                if (this.validity.valid) {
+                    numValid++;
+                }
+            });
+    
+            // var progress = $("#progress"),
+            //     progressMessage = $("#progress-message");
+            var progress = $("#progress");
+    
+            progress.attr("value", Math.round(numValid * 14.28));
+    
+    
+            // if (numValid == 0) {
+            //     progress.attr("value", "0");
+            //     // progressMessage.text("The form, it wants you.");
+            // }
+            // if (numValid == 1) {
+            //     progress.attr("value", "20");
+            //     // progressMessage.text("There you go, great start!");
+            // }
+            // if (numValid == 2) {
+            //     progress.attr("value", "40");
+            //     // progressMessage.text("Nothing can stop you now.");
+            //
+            // }
+            // if (numValid == 3) {
+            //     progress.attr("value", "60");
+            //     // progressMessage.text("You're basically a hero, right?");
+            // }
+            // if (numValid == 4) {
+            //     progress.attr("value", "80");
+            //
+            //     // progressMessage.text("They are going to write songs about you.");
+            // }
+            // if (numValid == 5) {
+            //     progress.attr("value", "100");
+            //     // progressMessage.text("SO CLOSE. PRESS THE THING.");
+            // }
+        });
+    </script>
+    
+    <script>
+        let db = null;
+    
+        // ADD BUTTON
+        let btnAdd = document.getElementById("submit");
+        btnAdd.addEventListener("click", addNewNote)
+    
+        // ADD NEW NOTE
+        function addNewNote() {
+            let rbM = document.getElementById("male");
+            let rbF = document.getElementById("female");
+            let gender = rbM.checked == true ? rbM.value : rbF.value;
+            let newNote = {
+                username: document.getElementById("username").value,
+                email: document.getElementById("email").value,
+                website: document.getElementById("website").value,
+                password: document.getElementById("password").value,
+                confirmpassword: document.getElementById("confirmpassword").value,
+                dob: document.getElementById("dob").value,
+                gender: gender,
+                comments: document.getElementById("comments").value,
+                checkBox: document.getElementById("agree").value,
+            }
+            console.log(newNote)
+            const crudOpt = db.transaction("Signup", "readwrite")
+            const noteObj = crudOpt.objectStore("Signup");
+            noteObj.add(newNote);
+            console.log("Data Saved..!");
+            alert("Signup success")
+            window.location.assign('login.html');
+            // viewNotes()
+        }
+    </script>
+<script>
+    showHideLink()
+</script>
 
 </body>
 

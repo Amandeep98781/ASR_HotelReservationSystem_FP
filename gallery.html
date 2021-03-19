@@ -7,10 +7,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery</title>
 
+    <!--    External Links-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style2.css">
+    <script src="main.js"></script>
+
 </head>
 
 <body>
 
 </body>
+
+<!--HEADER-->
+<nav class="navbar header">
+    <ul>
+        <li><a href="index.html" style="font-weight: bolder;font-size: 19px">
+                Hotel Reservation System</a>
+        </li>
+        <li><a href="booking.html">Booking</a></li>
+        <li><a href="service.html">Services</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="testimonials.html">Testimonials</a></li>
+        <li class="beforeLogin"><a href="login.html" class="">
+                Login</a>
+        </li>
+        <li class="beforeLogin"><a href="register.html" class="">
+                Register</a>
+        </li>
+        <li class="afterLogin"><a href="userDetails2.html" class="">My WishList</a>
+        </li>
+        <li class="afterLogin"><a onclick="logout()" class="">
+                Logout</a>
+        </li>
+    </ul>
+</nav>
+<!--//HEADER-->
+
+<!--GALLERY-->
+<section class="container">
+    <div class="align-center" style="padding-bottom: 30px">
+        <h1>Gallery</h1>
+        <!--        <p>Login, Register, Dashboard Screens, Add Task etc.</p>-->
+    </div>
+    <div class="galleryWork">
+        <div>
+            <img src="gallery/hotel-1.jpg" class="img-fluid" alt="">
+        </div>
+        <div>
+            <img src="gallery/hotel-2.jpg" class="img-fluid" alt="">
+        </div>
+        <div>
+            <img src="gallery/hotel-3.webp" class="img-fluid" alt="">
+        </div>
+
+        <div>
+            <img src="gallery/hotel-4.webp" class="img-fluid" alt="">
+        </div>
+        <div>
+            <img src="gallery/hotel-5.webp" class="img-fluid" alt="">
+        </div>
+        <div>
+            <img src="gallery/hotel-6.webp" class="img-fluid" alt="">
+        </div>
+    </div>
+</section>
+<br><br><br>
+<!--//GALLERY-->
+
+<!--FOOTER-->
+<footer>
+    <div class="footer-wrapper">
+        <div class="nav-wrapper sm-text-center">
+            <div class="dots-wrapper">
+                <a class="footer-title" style="color: white;text-decoration: none;margin-top: 10px" href="index.html">
+                    Hotel Reservation System
+                </a>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="booking.html">Booking</a></li>
+                    <li><a href="service.html">Services</a></li>
+                    <li><a href="about.html">About us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="testimonials.html">Testimonials</a></li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="nav-wrapper sm-text-center" style="margin-top: 30px">
+            <div class="diplay-block">
+                <a class="" href="#" style="color: white;text-decoration: none">
+                    All right Reserved
+                </a>
+            </div>
+            <div class="diplay-block">
+                <a class="" href="#" style="color: white;text-decoration: none">
+                    &#169; Created by ASR
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--//FOOTER-->
+<script>
+    showHideLink()
+</script>
 
 </html>
