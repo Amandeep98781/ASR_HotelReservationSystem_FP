@@ -1,0 +1,65 @@
+:root {
+    --ButtonColor: #A28089;
+    --HeaderBackground: #8458B3;
+    --FooterBackground: #444554;
+    --TextColor: #2A2D34;
+    --SuccessButton: Green;
+    --RejectButton: Red;
+}
+
+body {
+    font-family: Montserrat, sans-serif;
+    color: var(--TextColor);
+    font-size: .8em;
+    margin: 0;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    font-size: 17px !important;
+
+}
+
+.clear-fix {
+    clear: both;
+    margin-bottom: 5px;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+}
+
+.columns-2 {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-gap: 1em;
+}
+
+.columns-12 {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1em;
+}
+
+.columns-2-r {
+    padding-right: 40px;
+}
+
+.columns-2-l {
+    padding-left: 40px;
+}
+
+.header-top {
+    background-color: #8458B3;
+    opacity: 0.7;
+}
+
+.header {
+    /*padding: 2em;*/
+    background-color: #8458B3;
+}
